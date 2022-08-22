@@ -47,6 +47,7 @@ export default function LeftSidebar({handleClick}) {
                         <IoChatboxEllipsesOutline />
                     </div>
                     <span>Inbox</span>
+                    <p className='unread-count ms-3 mb-0'>10</p>
                 </NavLink>
 
                 <NavLink to={'/insights'} className='d-flex align-items-center menu-item link py-2' >

@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import LeftSidebar from '../Components/Sidebar/LeftSidebar';
-import RightSidebar from '../Components/Sidebar/RightSidebar';
 import Topbar from '../Components/Topbar/Topbar';
 
-export default function SidebarLayout({children, title}) {
+export default function FullWidthLayout({children, title}) {
   const [clicked, SetClicked] = useState(sessionStorage.getItem('sidebar-clicked') === 'true');
 
   useEffect(() => {
     sessionStorage.setItem('sidebar-clicked', clicked);
   }, [clicked]);
-
+  
   const handleClick = () => {
-      SetClicked(!clicked);
+    SetClicked(!clicked);
   }
   return (
     <section className='main-layout'>
@@ -22,11 +21,8 @@ export default function SidebarLayout({children, title}) {
               <LeftSidebar handleClick={handleClick} />
               <div className='main-content flex-grow-1 ps-3'>
                 <Topbar title={title} />
-                <div className='d-flex'>
-                    <div className='page-content custom-scrollbar flex-grow-1'>
-                        {children}
-                    </div>
-                    <RightSidebar />
+                <div className='page-content full-width custom-scrollbar flex-grow-1'>
+                    {children}
                 </div>
               </div>
             </div>

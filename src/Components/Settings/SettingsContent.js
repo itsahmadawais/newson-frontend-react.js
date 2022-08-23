@@ -4,6 +4,7 @@ import AccountBox from './AccountBox';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import RangeSlider from 'react-bootstrap-range-slider';
 import MultiRangeSlider from "multi-range-slider-react";
+import WorkspaceMemberItem from './WorkspaceMemberItem';
 
 export default function SettingsContent() {
   const [ inmailValue, setInmailValue ] = useState(0);
@@ -90,6 +91,49 @@ export default function SettingsContent() {
     }
   ];
 
+  const workspaceMembers = [
+    {
+        id: '1',
+        email: 'milli.bob@gmail.com',
+        accounts: [
+            {
+                id: '1',
+                image: '/images/testimonee.jpg',
+                email: 'chris.evan1@gmail.com'
+            },
+            {
+                id: '2',
+                image: '/images/testimonee.jpg',
+                email: 'chris.evan2@gmail.com'
+            }
+        ],
+        adminRight: true
+    },
+    {
+        id: '2',
+        email: 'milli.bob@gmail.com',
+        accounts: [
+            {
+                id: '1',
+                image: '/images/testimonee.jpg',
+                email: 'chris.evan3@gmail.com'
+            },
+            {
+                id: '2',
+                image: '/images/testimonee.jpg',
+                email: 'chris.evan4@gmail.com'
+            }
+        ],
+        adminRight: false
+    },
+    {
+        id: '3',
+        email: 'milli.bob@gmail.com',
+        accounts: [],
+        adminRight: false
+    }
+  ];
+
   const workspaceName = 'Alpha Team';
   const inviteCode = 'fh39988jdsss0'
   
@@ -123,14 +167,14 @@ export default function SettingsContent() {
                             label='Set as Default'
                             />
                     </div>
-                    <div className='d-flex align-items-center ms-2'>
+                    <div className='d-flex align-items-center'>
                         <Form.Switch 
                             id="weekend-run-switch"
                             label="Run on weekend"
                             checked
                         />
                     </div>
-                    <div className='d-flex align-items-center mt-3 ms-2'>
+                    <div className='d-flex align-items-center mt-3'>
                         <Form.Switch 
                             id="connect-req-boost-switch"
                             label="Use connection requests booster"
@@ -295,6 +339,23 @@ export default function SettingsContent() {
                             <Button variant='primary' className='mt-3'>Reset Code</Button>
                         </div>
                     </div>
+                    <table className='table table-borderless workspace-table align-middle text-center mt-4'>
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Allowed LinkedIn Accounts</th>
+                                <th>Has Admin Rights</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                workspaceMembers.map((item) => {
+                                    return <WorkspaceMemberItem key={item.id} data={item} />
+                                })
+                            }
+                        </tbody>
+                    </table>
                 </div>
                 <div className='section input-style py-4'>
                     <h5 className='mb-3'>Security</h5>

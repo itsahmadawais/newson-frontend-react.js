@@ -967,6 +967,7 @@ h1, h2, h3, h4, h5, h6{
             border-bottom: 0;
         }
         .form-switch {
+            margin-left: 10px;
             input {
                 font-size: 20px;
             }
@@ -1030,15 +1031,43 @@ h1, h2, h3, h4, h5, h6{
                 font-size: 15px;
             }
             input {
-                font-size: 15px;
-                &:focus {
-                    box-shadow: none;
-                    border-color: $primary-color;
+                &:not(.form-check-input) {
+                    font-size: 15px;
+                    &:focus {
+                        box-shadow: none;
+                        border-color: $primary-color;
+                    }
+                }
+            }
+        }
+        .workspace-table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            font-size: 14px;
+            thead {
+                th {
+                    font-weight: 600;
+                }
+            }
+            tr {
+                background-color: #fff;
+                box-shadow: 2px 2px 4px $primary-light-color;
+                td, th {
+                    padding: 8px;
+                    &:first-child {
+                        border-top-left-radius: 8px;
+                        border-bottom-left-radius: 8px;
+                    }
+                    &:last-child {
+                        border-top-right-radius: 8px;
+                        border-bottom-right-radius: 8px;
+                    }
                 }
             }
         }
     }
 }
+
 /***** Account Box *****/
 .account-box {
     width: 265px;
@@ -1094,5 +1123,27 @@ h1, h2, h3, h4, h5, h6{
     .email {
         font-size: 14px;
         font-weight: 600;
+    }
+}
+
+/***** Workspace Member Item *****/
+.workspace-member-item {
+    border-radius: 10px;
+    
+    img {
+        width: 35px;
+        border: 2px solid $primary-color;
+        border-radius: 35px;
+    }
+    .btn-action {
+        &:last-child {
+            background-color: rgb(255, 233, 233);
+            svg {
+                color: rgb(224, 70, 70);
+            }
+            &:hover {
+                border-color: rgb(224, 70, 70);
+            }
+        }
     }
 }

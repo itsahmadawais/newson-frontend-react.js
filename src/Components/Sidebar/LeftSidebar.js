@@ -15,7 +15,7 @@ export default function LeftSidebar({handleClick}) {
             <Button className='toggle-btn mt-2' onClick={handleClick}>
                 <BsChevronDoubleLeft size={14} />
             </Button>
-            <div className='sidebar-top'>
+            <div className='sidebar-top d-flex'>
                 <img className='logo' src={'/images/newson-logo.png'} alt='' />
                 <span>Newson</span>
             </div>

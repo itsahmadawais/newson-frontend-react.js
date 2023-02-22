@@ -5,6 +5,7 @@ import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import RangeSlider from 'react-bootstrap-range-slider';
 import MultiRangeSlider from "multi-range-slider-react";
 import WorkspaceMemberItem from './WorkspaceMemberItem';
+import { AiOutlinePlus } from "react-icons/ai";
 
 export default function SettingsContent() {
   const [ inmailValue, setInmailValue ] = useState(0);
@@ -321,41 +322,63 @@ export default function SettingsContent() {
                 </div>
                 <div className='section input-style py-4'>
                     <h5 className='mb-3'>Preferences</h5>
-                    <div className='row g-0'>
-                        <div className='col-md-6 pe-4'>
-                            <Form.Label>Workspace Name</Form.Label>
-                            <Form.Control
-                                type='text'
-                                value={workspaceName}
-                                />
+                    <div className='sub-section'>
+                        <div className='d-flex align-items-center section-divider mb-3'>
+                            <p className='mb-0 pe-3'>Menu Preferences</p>
+                            <hr />
                         </div>
-                        <div className='col-md-6 ps-4'>
-                            <Form.Label>Invite Code</Form.Label>
-                            <Form.Control
-                                type='text'
-                                value={inviteCode}
-                                readOnly
-                                />
-                            <Button variant='primary' className='mt-3'>Reset Code</Button>
+                        <div className='text-end'>
+                            <Button variant='primary' className='mb-2'>Add <AiOutlinePlus size={18} /></Button>
                         </div>
                     </div>
-                    <table className='table table-borderless workspace-table align-middle text-center mt-4'>
-                        <thead>
-                            <tr>
-                                <th>Email</th>
-                                <th>Allowed LinkedIn Accounts</th>
-                                <th>Has Admin Rights</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                workspaceMembers.map((item) => {
-                                    return <WorkspaceMemberItem key={item.id} data={item} />
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    <div className='sub-section'>
+                        <div className='d-flex align-items-center section-divider mb-3'>
+                            <p className='mb-0 pe-3'>Workspace Preferences</p>
+                            <hr />
+                        </div>
+                        <div className='row g-0'>
+                            <div className='col-md-6 pe-4'>
+                                <Form.Label>Workspace Name</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    value={workspaceName}
+                                    />
+                            </div>
+                            <div className='col-md-6 ps-4'>
+                                <Form.Label>Invite Code</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    value={inviteCode}
+                                    readOnly
+                                    />
+                                <Button variant='primary' className='mt-3'>Reset Code</Button>
+                            </div>
+                        </div>
+                        <div className='text-end'>
+                            <Button variant='primary' className='mt-3 mb-2'>Invite User <AiOutlinePlus size={18} /></Button>
+                        </div>
+                        <table className='table table-borderless workspace-table align-middle text-center'>
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Allowed LinkedIn Accounts</th>
+                                    <th>Has Admin Rights</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    workspaceMembers.map((item) => {
+                                        return <WorkspaceMemberItem key={item.id} data={item} />
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='d-flex justify-content-end'>
+                        <Button variant='gray' className='mt-3 me-2'>Cancel</Button>
+                        <Button variant='primary' className='mt-3'>Save</Button>
+                    </div>
                 </div>
                 <div className='section input-style py-4'>
                     <h5 className='mb-3'>Security</h5>

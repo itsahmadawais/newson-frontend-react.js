@@ -5,9 +5,11 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { MdFormatListBulleted, MdApps } from "react-icons/md";
 import Searchbar from '../Inputs/Searchbar';
 import OutreachBox from './OutreachBox';
+import { useNavigate } from 'react-router-dom';
 
 export default function OutreachContent() {
     const [listView, setListView] = useState(true);
+    const navigate = useNavigate();
 
     const outreach = [
         {
@@ -200,7 +202,7 @@ export default function OutreachContent() {
                         <Button variant='toggle' className={!listView ? 'active me-2' : 'me-2'} onClick={() => setListView(false)}>
                             <MdApps size={18} />
                         </Button>
-                        <Button variant='primary'>
+                        <Button variant='primary' onClick={() => navigate('/outreach/create')}>
                             Add New <AiOutlinePlus size={18} />
                         </Button>
                     </div>

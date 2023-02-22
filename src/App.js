@@ -8,6 +8,7 @@ import Insights from './Pages/Insights';
 import Settings from './Pages/Settings';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
+import CreateOutreach from './Pages/CreateOutreach';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route exact path={'/signup'} element={<Signup />} />
         <Route exact path={'/dashboard'} element={<Dashboard />} />
         <Route exact path={'/outreach'} element={<Outreach />} />
+        <Route exact path={'/outreach/create'} element={<CreateOutreach />} />
+        <Route exact path={'/outreach/edit'} element={<CreateOutreach />} />
         <Route exact path={'/prospects'} element={<Prospects />} />
         <Route exact path={'/inbox'} element={<Inbox />} />
         <Route exact path={'/insights'} element={<Insights />} />

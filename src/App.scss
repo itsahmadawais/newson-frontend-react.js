@@ -4,8 +4,11 @@ $primary-color: #53AE8A;
 $primary-light-color: rgba(44, 184, 146, 0.08);
 $secondary-color: #FBFBFB;
 $gray-color: #E5E5E5;
+$gray-border-color: #ced4da;
+$bg-color: #38c3ff16;
 $red-color: rgb(224, 70, 70);
 $red-light-color: rgb(255, 233, 233);
+$black-color: #000;
 
 @mixin breakpoint($class) {
     @if $class==xs {
@@ -30,6 +33,96 @@ $red-light-color: rgb(255, 233, 233);
     }
     @else {
         @warn "Breakpoint mixin supports: xs, sm, md, lg";
+    }
+}
+
+@mixin statuscolor($class) {
+    @if $class == blue-color {
+        &.blue-color {
+            color: $primary-color;
+        }
+    }
+    @else if $class == orange-color {
+        &.orange-color {
+            color: orangered;
+        }
+    }
+    @else if $class == purple-color {
+        &.purple-color {
+            color: purple;
+        }
+    }
+    @else {
+        @warn 'Wrong class';
+    }
+}
+
+@mixin labelcolor($class) {
+    @if $class == green-color {
+        &.green-color {
+            background-color: green;
+            border-color: green;
+        }
+    }
+    @else if $class == light-blue-color {
+        &.light-blue-color {
+            background-color: $primary-color;
+            border-color: $primary-color;
+        }
+    }
+    @else if $class == yellow-color {
+        &.yellow-color {
+            background-color: rgb(255, 136, 0);
+            border-color: rgb(255, 136, 0);
+        }
+    }
+    @else if $class == red-color {
+        &.red-color {
+            background-color: #f44336;
+            border-color: #f44336;
+        }
+    }
+    @else if $class == pink-color {
+        &.pink-color {
+            background-color: #e91e63;
+            border-color: #e91e63;
+        }
+    }
+    @else if $class == light-purple-color {
+        &.light-purple-color {
+            background-color: #9c27b0;
+            border-color: #9c27b0;
+        }
+    }
+    @else if $class == purple-color {
+        &.purple-color {
+            background-color: #673ab7;
+            border-color: #673ab7;
+        }
+    }
+    @else if $class == dark-blue-color {
+        &.dark-blue-color {
+            background-color: #3f51b5;
+            border-color: #3f51b5;
+        }
+    }
+    @else if $class == sea-green-color {
+        &.sea-green-color {
+            background-color: #009688;
+            border-color: #009688;
+        }
+    }
+    @else if $class == brown-color {
+        &.brown-color {
+            background-color: #795548;
+            border-color: #795548;
+        }
+    }
+    @else if $class == grey-color {
+        &.grey-color {
+            background-color: #607d8b;
+            border-color: #607d8b;
+        }
     }
 }
 
@@ -1487,6 +1580,586 @@ input, select, textarea {
             &:hover {
                 border-color: rgb(224, 70, 70);
             }
+        }
+    }
+}
+
+/*
+##### INBOX #####
+*/
+
+/***** Inbox Content *****/
+.inbox-content {
+    height: calc(100vh - 90px);
+    .chat-list, .chat-content, .chat-info {
+        height: 100%;
+    }
+    .no-chat-selected {
+        svg, p {
+            color: rgb(188, 188, 188);
+        }
+    }
+}
+
+/***** Chat List *****/
+.chat-list {
+    .chat-filter {
+        .dropdown-toggle {
+            padding: 7px 10px;
+            margin-left: 10px;
+            &::after {
+                display: none;
+            }
+        }
+        .dropdown-menu {
+            border: none;
+            min-width: 230px;
+            height: 70vh;
+            overflow: auto;
+            .section-heading {
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 5px;
+            }
+            .form-check {
+                margin-left: 3px;
+                label {
+                    font-size: 13px;
+                }
+                input {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    .chat-list-items {
+        background-color: #fff;
+        border-radius: 10px;
+        max-height: 63vh;
+        .infinite-scroll-wrap {
+            overflow-y: hidden !important;
+        }
+    }
+}
+
+/***** Chat Item *****/
+.chat-item-wrapper {
+    position: relative;
+    margin: 10px;
+    border: 1px solid #fff;
+    border-bottom: 1px solid $gray-border-color;
+    cursor: pointer;
+    &:last-child {
+        border-bottom-color: #fff;
+    }
+    &.unread {
+        border-bottom-color: #fff;
+        .chat-item {
+            background-color: $primary-light-color;
+            border-radius: 8px;
+            .last-msg {
+                font-weight: 600;
+            }
+        }
+    }
+    &.active {
+        border: 1px solid $primary-color;
+        border-radius: 8px;
+    }
+    .chat-item-menu {
+        .dropdown-toggle {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            &::after {
+                display: none;
+            }
+        }
+        .dropdown-menu {
+            font-size: 14px;
+            min-width: 180px;
+            border: none;
+            a{
+                padding: 10px;
+                cursor: pointer;
+                svg{
+                    margin-right: 10px;
+                }
+                &:hover {
+                    background-color: $bg-color;
+                    svg{
+                        color: $primary-color;
+                    }
+                }
+            }
+            .link {
+                p {
+                    margin-bottom: 0;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+    .chat-item {
+        position: relative;
+        padding: 8px;
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+        .item-content {
+            font-size: 13px;
+            .last-msg {
+                text-overflow: ellipsis;
+                width: 140px;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            .item-status {
+                .status-right {
+                    margin-right: -15px;
+                    .msg-status {
+                        font-size: 11px;
+                        @include statuscolor('blue-color');
+                        @include statuscolor('orange-color');
+                        @include statuscolor('purple-color');
+                    }
+                    .time {
+                        font-size: 11px;
+                    }
+                    .dot-separator {
+                        display: inline-block;
+                        width: 3px;
+                        height: 3px;
+                        background-color: $gray-border-color;
+                        border-radius: 5px;
+                        margin: 4px 4px 2px 4px;
+                    }
+                }
+            }
+        }
+    }
+    .labels {
+        padding: 0 5px 5px;
+        span {
+            font-size: 10px;
+            color: #fff;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            border-radius: 4px;
+            padding: 1px 3px;
+            @include labelcolor('green-color');
+            @include labelcolor('light-blue-color');
+            @include labelcolor('yellow-color');
+            @include labelcolor('red-color');
+            @include labelcolor('pink-color');
+            @include labelcolor('light-purple-color');
+            @include labelcolor('purple-color');
+            @include labelcolor('dark-blue-color');
+            @include labelcolor('sea-green-color');
+            @include labelcolor('brown-color');
+            @include labelcolor('grey-color');
+        }
+    }
+}
+
+/***** Chat Content *****/
+.chat-content {
+    .chat-content-head {
+        .chat-head-left {
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 5px;
+            }
+            .name {
+                font-size: 15px;
+                font-weight: 600;
+            }
+            .msg-status {
+                font-size: 12px;
+                @include statuscolor('blue-color');
+                @include statuscolor('orange-color');
+                @include statuscolor('purple-color');
+            }
+        }
+        .chat-head-right {
+            .btn-action {
+                &:not(.dropdown-toggle) {
+                    font-size: 12px;
+                    padding: 4px 8px;
+                    background-color: transparent;
+                    border-color: $gray-border-color;
+                    &:hover {
+                        background-color: $primary-light-color;
+                    }
+                    &.active {
+                        color: #fff;
+                        @include labelcolor('green-color');
+                        @include labelcolor('light-blue-color');
+                        @include labelcolor('yellow-color');
+                    }
+                }
+            }
+            .labels-dropdown {
+                p {
+                    font-size: 13px;
+                }
+                .dropdown-toggle {
+                    font-size: 13px;
+                    &::before {
+                        margin-right: 10px;
+                    }
+                }
+                .dropdown-menu {
+                    min-width: 200px;
+                    border: none;
+                    .small-heading {
+                        color: $primary-color;
+                    }
+                    .labels-wrap {
+                        max-height: 150px;
+                        .label-item {
+                            .form-check {
+                                font-size: 13px;
+                            }
+                            .color-dot {
+                                width: 10px;
+                                height: 10px;
+                                border-radius: 20px;
+                                @include labelcolor('red-color');
+                                @include labelcolor('pink-color');
+                                @include labelcolor('light-purple-color');
+                                @include labelcolor('purple-color');
+                                @include labelcolor('dark-blue-color');
+                                @include labelcolor('sea-green-color');
+                                @include labelcolor('brown-color');
+                                @include labelcolor('grey-color');
+                            }
+                            .btn-red {
+                                padding: 2px;
+                            }
+                        }
+                    }
+                    .btn {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+    .chat-content-main {
+        background-color: #fff;
+        border-radius: 5px;
+        .chat-content-body {
+            height: calc(100vh - 270px);
+            overflow: auto;
+            padding: 0 8px;
+        }
+    }
+    .chat-content-foot {
+        border-top: 1px solid $gray-color;
+        textarea {
+            font-size: 15px;
+            border: none;
+            resize: none;
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        .replies-dropdown {
+            .dropdown-toggle {
+                &::before {
+                    display: none;
+                }
+            }
+            .dropdown-menu {
+                min-width: 300px;
+                border: none;
+                .small-heading {
+                    font-size: 13px;
+                    color: $primary-color;
+                }
+                .replies-wrap {
+                    max-height: 200px;
+                    p {
+                        font-size: 13px;
+                    }
+                    .reply-item {
+                        .reply-content {
+                            cursor: pointer;
+                            border-radius: 8px;
+                            background-color: $bg-color;
+                            &:hover {
+                                background-color: $primary-light-color;
+                            }
+                            .title {
+                                font-size: 12px;
+                                font-weight: 600;
+                            }
+                            .msg {
+                                font-size: 12px;
+                                width: 210px;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                white-space: nowrap;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/***** Chat Msg *****/
+.chat-msg {
+    max-width: 60%;
+    font-size: 14px;
+    margin-right: 0;
+    margin-left: auto;
+    img {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        margin-top: auto;
+        margin-bottom: 20px;
+    }
+    .msg-content {
+        .msg {
+            width: fit-content;
+            margin-right: 0;
+            margin-left: auto;
+            background-color: $primary-light-color;
+            border-radius: 10px 10px 0 10px;
+        }
+        .meta {
+            justify-content: end;
+            font-size: 11px;
+            .dot-separator {
+                display: inline-block;
+                width: 3px;
+                height: 3px;
+                border-radius: 10px;
+                background-color: $gray-border-color;
+            }
+            .sent {
+                svg {
+                    color: $primary-color;
+                }
+            }
+            .not-sent {
+                svg {
+                    color: $red-color;
+                }
+            }
+        }
+    }
+    &.other {
+        flex-direction: row-reverse;
+        margin-left: 0;
+        margin-right: auto;
+        .msg-content {
+            .msg {
+                margin-right: auto;
+                margin-left: 0;
+                background-color: #F5F5F5;
+                border-radius: 10px 10px 10px 0;
+            }
+            .meta {
+                justify-content: start;
+            }
+        }
+    }
+}
+
+/***** Chat Info *****/
+.chat-info {
+    max-height: calc(100vh - 100px);
+    overflow: auto;
+    .user-info {
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .msg-status {
+            color: $primary-color;
+            font-size: 12px;
+            @include statuscolor('blue-color');
+            @include statuscolor('orange-color');
+            @include statuscolor('purple-color');
+        }
+        .company-item {
+            .comp-name {
+                color: $primary-color;
+            }
+        }
+    }
+    .small-heading {
+        font-size: 12px;
+        color: $primary-color;
+    }
+    .company-item {
+        font-size: 14px;
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+        .comp-name {
+            text-decoration: none;
+        }
+        .designation, .start-end-date {
+            font-size: 12px;
+        }
+    }
+    .camp-data {
+        .camp-data-head {
+            .camp-title {
+                font-size: 14px;
+                font-weight: 600;
+                text-overflow: ellipsis;
+                width: 170px;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+            .camp-status {
+                font-size: 12px;
+                color: $primary-color;
+                background-color: $primary-light-color;
+                border-radius: 5px;
+                padding: 3px 5px 3px;
+                &.inactive {
+                    background-color: $red-light-color;
+                    color: $red-color;
+                }
+            }
+        }
+        .camp-step {
+            p {
+                font-size: 12px;
+                &.wait-time {
+                    font-size: 11px;
+                }
+            }
+        }
+        .btn {
+            padding: 5px;
+            font-size: 12px;
+        }
+    }
+    .contacts-data {
+        .contact-item {
+            .item-left {
+                p {
+                    font-size: 13px;
+                    text-transform: capitalize;
+                }
+            }
+            .item-right {
+                input {
+                    font-size: 13px;
+                    border: none;
+                    background-color: transparent;
+                    padding: 0;
+                    text-overflow: ellipsis;
+                    width: 115px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    &:focus {
+                        box-shadow: none;
+                    }
+                    &:not(:read-only) {
+                        border: 1px solid $primary-color;
+                    }
+                }
+                button {
+                    padding: 0px 3px;
+
+                }
+            }
+        }
+        .btn {
+            padding: 5px;
+            font-size: 12px;
+        }
+    }
+    .accordion {
+        .accordion-header {
+            button {
+                color: $black-color;
+                font-weight: 600;
+            }
+        }
+        .accordion-item {
+            box-shadow: 2px 2px 5px $primary-light-color;
+            .accordion-button {
+                font-size: 14px;
+                padding: 10px;
+                box-shadow: none;
+                &:focus {
+                    box-shadow: none;
+                    background-color: $primary-light-color;
+                }
+                &:not(.collapsed) {
+                    background-color: $primary-light-color;
+                }
+            }
+            .accordion-body {
+                border-top: 1px solid $primary-light-color;
+            }
+        }
+    }
+}
+
+/*
+##### ADMIN PANEL #####
+*/
+
+/***** Admin Panel Content *****/
+.admin-panel-content {
+    .content-section {
+        height: calc(100vh - 150px);
+    }
+}
+
+/***** User Box *****/
+.user-box {
+    width: 270px;
+    .user-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+    }
+    .content-main {
+        span {
+            font-size: 13px;
+            svg {
+                color: $primary-color;
+            }
+        }
+    }
+    .labels {
+        p {
+            font-size: 12px;
+            color: #fff;
+            background-color: $primary-color;
+            border-radius: 4px;
+            padding: 2px 5px;
+        }
+    }
+    .content-foot {
+        border-top: 1px solid $gray-color;
+        .amount {
+            color: $primary-color;
+            font-weight: 500;
         }
     }
 }

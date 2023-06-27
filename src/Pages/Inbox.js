@@ -1,9 +1,11 @@
-import React from 'react';
-import SidebarLayout from '../Layouts/SidebarLayout';
+import React from "react";
+import FullWidthLayout from "../Layouts/FullWidthLayout";
+import InboxContent from "../Components/Inbox/InboxContent";
 
 export default function Inbox() {
   return (
-    <SidebarLayout title={'Inbox'}>
-    </SidebarLayout>
-  )
+    <FullWidthLayout title={"Inbox"}>
+      <InboxContent />
+    </FullWidthLayout>
+  );
 }
